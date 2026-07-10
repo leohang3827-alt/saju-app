@@ -10,6 +10,10 @@ interface LockedModalProps {
 export const LockedModal: React.FC<LockedModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
+  const handlePurchaseClick = () => {
+    window.open('https://gusdud3827.cafe24.com', '_blank');
+  };
+
   return (
     <div style={{
       position: 'absolute',
@@ -51,32 +55,49 @@ export const LockedModal: React.FC<LockedModalProps> = ({ isOpen, onClose }) => 
               color: 'var(--color-accent-red)',
               fontFamily: 'var(--font-oriental)'
             }}>
-              정식 출시 예정입니다
+              프리미엄 리포트 구매
             </h2>
             
             <p style={{
-              fontSize: '14px',
+              fontSize: '13px',
               lineHeight: '1.6',
               color: 'var(--color-text-charcoal)',
               marginBottom: '20px',
               wordBreak: 'keep-all'
             }}>
-              현재는 무료 사주 기본 분석만<br />
-              이용 가능합니다.
+              기질 및 성향 분석, 용신/희신 비책, 실생활 맞춤 개운법, 공간 풍수 인테리어, 2026년 하반기 신수 총운까지 모든 상세 리포트를 무제한 감상해 보세요!
             </p>
 
-            <button 
-              className="btn-primary" 
-              onClick={onClose}
-              style={{
-                padding: '10px 24px',
-                fontSize: '14px',
-                borderRadius: '8px',
-                width: '100%'
-              }}
-            >
-              확인
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '8px' }}>
+              <button 
+                className="btn-primary" 
+                onClick={handlePurchaseClick}
+                style={{
+                  padding: '12px 24px',
+                  fontSize: '14px',
+                  borderRadius: '10px',
+                  width: '100%',
+                  fontWeight: 'bold'
+                }}
+              >
+                프리미엄 구매하러 가기
+              </button>
+              
+              <button 
+                onClick={onClose}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--color-text-light)',
+                  padding: '8px',
+                  fontSize: '12px',
+                  cursor: 'pointer',
+                  textDecoration: 'underline'
+                }}
+              >
+                돌아가기
+              </button>
+            </div>
           </div>
         </OrientalFrame>
       </div>
