@@ -171,26 +171,13 @@ export const Home: React.FC<HomeProps> = ({ onSelectReport, onOpenLockModal }) =
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           {reports.map((r) => {
             const clickHandler = () => {
-              const hasResult = localStorage.getItem('saju_latest_result');
-              if (!hasResult) {
-                onSelectReport(1);
-                alert('사주 분석을 먼저 진행해 주세요! 분석 결과를 바탕으로 맞춤형 리포트가 열립니다.');
+              if (!r.isFree) {
+                onOpenLockModal();
                 return;
               }
 
-              if (r.id === 1) {
-                onSelectReport(1);
-              } else if (r.id === 2) {
-                window.open('/reports/personality/index.html', '_blank');
-              } else if (r.id === 3) {
-                window.open('/reports/yongshin/index.html', '_blank');
-              } else if (r.id === 4) {
-                window.open('/reports/lucky-elements/index.html', '_blank');
-              } else if (r.id === 5) {
-                window.open('/reports/fengshui/index.html', '_blank');
-              } else if (r.id === 6) {
-                window.open('/reports/fortune2026/index.html', '_blank');
-              }
+              // If it's a free report (item 1), go to report form/result
+              onSelectReport(1);
             };
 
             return (

@@ -114,7 +114,7 @@ export const App: React.FC = () => {
             <ReportResult 
               result={activeResult}
               onBack={() => setActiveTab('home')}
-              onOpenLockModal={() => setReportSubScreen('detailed')}
+              onOpenLockModal={() => setIsLockModalOpen(true)}
             />
           );
         } else {
