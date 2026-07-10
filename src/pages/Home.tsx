@@ -7,6 +7,7 @@ import waterSmall from '../assets/characters/water_small.png';
 import woodSmall from '../assets/characters/wood_small.png';
 import { BellIcon, LockIcon } from '../widgets/TraditionalDeco';
 import OrientalFrame from '../widgets/OrientalFrame';
+import DraggableWrapper from '../widgets/DraggableWrapper';
 
 interface HomeProps {
   onSelectReport: (index: number) => void;
@@ -34,118 +35,122 @@ export const Home: React.FC<HomeProps> = ({ onSelectReport, onOpenLockModal }) =
   return (
     <div className="scroll-content">
       {/* Top Header Section */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        position: 'relative',
-        marginBottom: '28px',
-        marginTop: '10px'
-      }}>
-        <div style={{ flex: 1, paddingRight: '12px' }}>
-          <h1 style={{
-            fontSize: '26px',
-            fontWeight: 800,
-            lineHeight: '1.4',
-            color: 'var(--color-accent-red)',
-            marginBottom: '8px',
-            fontFamily: 'var(--font-oriental)'
-          }}>
-            오늘도<br />당신의 하루를<br />응원해요
-          </h1>
-          <p style={{
-            fontSize: '13px',
-            color: 'var(--color-text-light)',
-            lineHeight: '1.5'
-          }}>
-            내 사주를 통해<br />더 나은 내일을 설계해보세요.
-          </p>
-        </div>
-
-        {/* Main Wood Character */}
+      <DraggableWrapper id="home_header">
         <div style={{
-          position: 'relative',
-          width: '140px',
-          height: '140px',
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          position: 'relative',
+          marginBottom: '28px',
+          marginTop: '10px'
         }}>
-          <img 
-            src={woodLarge} 
-            alt="목 캐릭터" 
-            style={{ 
-              maxHeight: '100%', 
-              objectFit: 'contain',
-              filter: 'drop-shadow(0px 8px 16px rgba(166, 30, 34, 0.12))'
-            }} 
-          />
-        </div>
+          <div style={{ flex: 1, paddingRight: '12px' }}>
+            <h1 style={{
+              fontSize: '26px',
+              fontWeight: 800,
+              lineHeight: '1.4',
+              color: 'var(--color-accent-red)',
+              marginBottom: '8px',
+              fontFamily: 'var(--font-oriental)'
+            }}>
+              오늘도<br />당신의 하루를<br />응원해요
+            </h1>
+            <p style={{
+              fontSize: '13px',
+              color: 'var(--color-text-light)',
+              lineHeight: '1.5'
+            }}>
+              내 사주를 통해<br />더 나은 내일을 설계해보세요.
+            </p>
+          </div>
 
-        {/* Notification Bell */}
-        <button 
-          onClick={onOpenLockModal}
-          style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '4px'
-          }}
-        >
-          <BellIcon size={24} />
-        </button>
-      </div>
+          {/* Main Wood Character */}
+          <div style={{
+            position: 'relative',
+            width: '140px',
+            height: '140px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <img 
+              src={woodLarge} 
+              alt="목 캐릭터" 
+              style={{ 
+                maxHeight: '100%', 
+                objectFit: 'contain',
+                filter: 'drop-shadow(0px 8px 16px rgba(166, 30, 34, 0.12))'
+              }} 
+            />
+          </div>
+
+          {/* Notification Bell */}
+          <button 
+            onClick={onOpenLockModal}
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px'
+            }}
+          >
+            <BellIcon size={24} />
+          </button>
+        </div>
+      </DraggableWrapper>
 
       {/* Five Elements Characters Row */}
-      <OrientalFrame title="오행의 기운" className="character-row-card">
-        <div 
-          style={{
-            display: 'flex',
-            overflowX: 'auto',
-            gap: '16px',
-            padding: '4px 0 10px 0',
-            scrollSnapType: 'x mandatory',
-            scrollbarWidth: 'none'
-          }}
-          className="hide-scrollbar"
-        >
-          {characters.map((c, i) => (
-            <div 
-              key={i} 
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                flexShrink: 0,
-                width: '68px',
-                scrollSnapAlign: 'start'
-              }}
-            >
-              <div style={{
-                width: '56px',
-                height: '64px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: '6px'
-              }}>
-                <img src={c.image} alt={c.name} style={{ maxHeight: '100%', objectFit: 'contain' }} />
+      <DraggableWrapper id="home_elements">
+        <OrientalFrame title="오행의 기운" className="character-row-card">
+          <div 
+            style={{
+              display: 'flex',
+              overflowX: 'auto',
+              gap: '16px',
+              padding: '4px 0 10px 0',
+              scrollSnapType: 'x mandatory',
+              scrollbarWidth: 'none'
+            }}
+            className="hide-scrollbar"
+          >
+            {characters.map((c, i) => (
+              <div 
+                key={i} 
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  flexShrink: 0,
+                  width: '68px',
+                  scrollSnapAlign: 'start'
+                }}
+              >
+                <div style={{
+                  width: '56px',
+                  height: '64px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: '6px'
+                }}>
+                  <img src={c.image} alt={c.name} style={{ maxHeight: '100%', objectFit: 'contain' }} />
+                </div>
+                <span style={{
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  color: c.color,
+                  fontFamily: 'var(--font-oriental)'
+                }}>
+                  {c.name}
+                </span>
               </div>
-              <span style={{
-                fontSize: '11px',
-                fontWeight: 600,
-                color: c.color,
-                fontFamily: 'var(--font-oriental)'
-              }}>
-                {c.name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </OrientalFrame>
+            ))}
+          </div>
+        </OrientalFrame>
+      </DraggableWrapper>
 
       {/* Reports List Section */}
       <div style={{ marginBottom: '16px' }}>
@@ -170,98 +175,99 @@ export const Home: React.FC<HomeProps> = ({ onSelectReport, onOpenLockModal }) =
               : onOpenLockModal;
 
             return (
-              <div 
-                key={r.id}
-                onClick={clickHandler}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  backgroundColor: 'var(--color-cream-card)',
-                  border: '1px solid #EAE0D5',
-                  borderRadius: '16px',
-                  padding: '12px 14px',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(42, 36, 33, 0.03)',
-                  transition: 'transform 0.2s ease, border-color 0.2s ease',
-                  position: 'relative'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-gold)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#EAE0D5'; }}
-              >
-                {/* Character Thumbnail */}
-                <div style={{
-                  width: '42px',
-                  height: '46px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginRight: '14px',
-                  flexShrink: 0
-                }}>
-                  <img src={r.char} alt="" style={{ maxHeight: '100%', objectFit: 'contain' }} />
-                </div>
-
-                {/* Report Info */}
-                <div style={{ flex: 1, paddingRight: '8px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                    <h4 style={{
-                      fontSize: '14px',
-                      fontWeight: 700,
-                      color: 'var(--color-text-charcoal)',
-                      margin: 0,
-                      fontFamily: 'var(--font-oriental)',
-                      lineHeight: '1.2'
-                    }}>
-                      {r.title}
-                    </h4>
-                    
-                    {r.isFree ? (
-                      <span style={{
-                        fontSize: '9px',
-                        fontWeight: 700,
-                        color: 'white',
-                        backgroundColor: 'var(--color-accent-red)',
-                        padding: '1px 5px',
-                        borderRadius: '4px',
-                        letterSpacing: '0.05em'
-                      }}>
-                        FREE
-                      </span>
-                    ) : (
-                      <span style={{
-                        color: 'var(--color-text-light)',
-                        display: 'flex',
-                        alignItems: 'center'
-                      }}>
-                        <LockIcon size={12} />
-                      </span>
-                    )}
-                  </div>
-                  
-                  <p style={{
-                    fontSize: '11px',
-                    color: 'var(--color-text-light)',
-                    lineHeight: '1.4',
-                    margin: 0
-                  }}>
-                    {r.desc}
-                  </p>
-                </div>
-
-                {/* Arrow Indicator (only for free/active item) */}
-                {r.isFree && (
-                  <div style={{
-                    color: 'var(--color-accent-red)',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
+              <DraggableWrapper key={r.id} id={`home_card_${r.id}`}>
+                <div 
+                  onClick={clickHandler}
+                  style={{
                     display: 'flex',
                     alignItems: 'center',
-                    paddingLeft: '4px'
+                    backgroundColor: 'var(--color-cream-card)',
+                    border: '1px solid #EAE0D5',
+                    borderRadius: '16px',
+                    padding: '12px 14px',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 12px rgba(42, 36, 33, 0.03)',
+                    transition: 'transform 0.2s ease, border-color 0.2s ease',
+                    position: 'relative'
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-gold)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#EAE0D5'; }}
+                >
+                  {/* Character Thumbnail */}
+                  <div style={{
+                    width: '42px',
+                    height: '46px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginRight: '14px',
+                    flexShrink: 0
                   }}>
-                    &gt;
+                    <img src={r.char} alt="" style={{ maxHeight: '100%', objectFit: 'contain' }} />
                   </div>
-                )}
-              </div>
+
+                  {/* Report Info */}
+                  <div style={{ flex: 1, paddingRight: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                      <h4 style={{
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: 'var(--color-text-charcoal)',
+                        margin: 0,
+                        fontFamily: 'var(--font-oriental)',
+                        lineHeight: '1.2'
+                      }}>
+                        {r.title}
+                      </h4>
+                      
+                      {r.isFree ? (
+                        <span style={{
+                          fontSize: '9px',
+                          fontWeight: 700,
+                          color: 'white',
+                          backgroundColor: 'var(--color-accent-red)',
+                          padding: '1px 5px',
+                          borderRadius: '4px',
+                          letterSpacing: '0.05em'
+                        }}>
+                          FREE
+                        </span>
+                      ) : (
+                        <span style={{
+                          color: 'var(--color-text-light)',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}>
+                          <LockIcon size={12} />
+                        </span>
+                      )}
+                    </div>
+                    
+                    <p style={{
+                      fontSize: '11px',
+                      color: 'var(--color-text-light)',
+                      lineHeight: '1.4',
+                      margin: 0
+                    }}>
+                      {r.desc}
+                    </p>
+                  </div>
+
+                  {/* Arrow Indicator (only for free/active item) */}
+                  {r.isFree && (
+                    <div style={{
+                      color: 'var(--color-accent-red)',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      display: 'flex',
+                      alignItems: 'center',
+                      paddingLeft: '4px'
+                    }}>
+                      &gt;
+                    </div>
+                  )}
+                </div>
+              </DraggableWrapper>
             );
           })}
         </div>
