@@ -78,7 +78,7 @@ export const Splash: React.FC<SplashProps> = ({ onStart }) => {
       </div>
 
       {/* Top Section: App Title */}
-      <DraggableWrapper id="splash_title" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <DraggableWrapper id="splash_title_v2" defaultOffset={{ x: 1, y: 46 }} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -133,11 +133,11 @@ export const Splash: React.FC<SplashProps> = ({ onStart }) => {
       </DraggableWrapper>
 
       {/* Middle Section: Main Wood Character with Gold Halo */}
-      <DraggableWrapper id="splash_char">
+      <DraggableWrapper id="splash_char_v2" defaultOffset={{ x: -8, y: -19 }}>
         <div style={{
           position: 'relative',
-          width: '240px',
-          height: '240px',
+          width: '320px',
+          height: '320px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -146,16 +146,16 @@ export const Splash: React.FC<SplashProps> = ({ onStart }) => {
           {/* Background Traditional Circle Border */}
           <div style={{
             position: 'absolute',
-            width: '200px',
-            height: '200px',
+            width: '280px',
+            height: '280px',
             borderRadius: '50%',
             border: '1px dashed rgba(192, 157, 91, 0.4)',
             animation: 'spinSlow 40s linear infinite'
           }} />
           <div style={{
             position: 'absolute',
-            width: '180px',
-            height: '180px',
+            width: '250px',
+            height: '250px',
             borderRadius: '50%',
             border: '1px solid rgba(192, 157, 91, 0.15)'
           }} />
@@ -168,14 +168,14 @@ export const Splash: React.FC<SplashProps> = ({ onStart }) => {
               maxHeight: '85%',
               objectFit: 'contain',
               filter: 'drop-shadow(0px 12px 24px rgba(0, 0, 0, 0.35))',
-              transform: 'scale(1.1)'
+              transform: 'scale(1.5)'
             }}
           />
         </div>
       </DraggableWrapper>
 
       {/* Bottom Section: Action Button */}
-      <DraggableWrapper id="splash_footer" style={{ width: '100%' }}>
+      <DraggableWrapper id="splash_footer_v2" defaultOffset={{ x: 1, y: -96 }} style={{ width: '100%' }}>
         <div style={{
           width: '100%',
           zIndex: 5,
