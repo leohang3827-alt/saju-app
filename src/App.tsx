@@ -31,6 +31,9 @@ export const App: React.FC = () => {
     const latest = getLatestHistoryItem();
     if (latest) {
       setActiveResult(latest.result);
+      try {
+        localStorage.setItem('saju_latest_result', JSON.stringify(latest.result));
+      } catch (e) {}
       setReportSubScreen('result');
     } else {
       setReportSubScreen('form');
@@ -51,6 +54,11 @@ export const App: React.FC = () => {
         result
       );
 
+      // Save as latest result
+      try {
+        localStorage.setItem('saju_latest_result', JSON.stringify(result));
+      } catch (e) {}
+
       // Set active result and navigate to results screen
       setActiveResult(result);
       setReportSubScreen('result');
@@ -61,6 +69,9 @@ export const App: React.FC = () => {
   };
 
   const handleSelectHistory = (item: HistoryItem) => {
+    try {
+      localStorage.setItem('saju_latest_result', JSON.stringify(item.result));
+    } catch (e) {}
     setActiveResult(item.result);
     setReportSubScreen('result');
     setActiveTab('report');

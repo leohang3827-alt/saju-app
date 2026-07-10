@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=device-width, initial-scale=1.0">
+  <title>2026년 하반기 총운 - AI 사주 리포트</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Serif+KR:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --color-bg-cream: #FCF9F5;
+      --color-cream-card: #FAF5EF;
+      --color-accent-red: #A61E22;
+      --color-accent-gold: #C09D5B;
+      --color-text-charcoal: #2A2421;
+      --color-text-light: #6E625A;
+      --font-serif: 'Noto Serif KR', serif;
+      --font-sans: 'Outfit', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg-cream);
+      font-family: var(--font-sans), sans-serif;
+      color: var(--color-text-charcoal);
+      line-height: 1.6;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-accent-gold);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 8px 32px rgba(42, 36, 33, 0.06);
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Corner Deco */
+    .corner-decor {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--color-accent-gold);
+      pointer-events: none;
+    }
+    .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .fan-icon {
+      font-size: 28px;
+      color: var(--color-accent-red);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      color: var(--color-accent-red);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .sub-title {
+      font-size: 11px;
+      color: var(--color-accent-gold);
+      letter-spacing: 0.15em;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-accent-gold);
+      margin: 12px auto;
+    }
+
+    /* User Badge */
+    .user-badge {
+      background-color: var(--color-cream-card);
+      border: 1px solid rgba(192, 157, 91, 0.3);
+      border-radius: 12px;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 13px;
+      margin-bottom: 20px;
+      font-family: var(--font-serif);
+    }
+    .user-badge strong {
+      color: var(--color-accent-red);
+    }
+
+    /* Card Layout */
+    .card {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(192, 157, 91, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(42, 36, 33, 0.02);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-accent-red);
+      border-bottom: 1px dashed var(--color-accent-gold);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-content {
+      font-size: 13px;
+      color: var(--color-text-charcoal);
+      line-height: 1.7;
+      text-align: justify;
+      word-break: keep-all;
+    }
+
+    /* Monthly Grid list */
+    .monthly-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .month-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px dotted rgba(192,157,91,0.25);
+      padding-bottom: 12px;
+    }
+    .month-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .month-badge {
+      background-color: var(--color-accent-red);
+      color: #FFFFFF;
+      font-family: var(--font-serif);
+      font-size: 12px;
+      font-weight: bold;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-shrink: 0;
+      border: 1px solid var(--color-accent-gold);
+      box-shadow: 0 2px 6px rgba(166,30,34,0.15);
+    }
+    .month-desc {
+      font-size: 12.5px;
+      color: var(--color-text-charcoal);
+      line-height: 1.6;
+      text-align: justify;
+      word-break: keep-all;
+      flex: 1;
+    }
+
+    /* Action Button */
+    .btn-close {
+      margin-top: auto;
+      background-color: var(--color-accent-red);
+      color: #FFFFFF;
+      border: 1px solid var(--color-accent-gold);
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      font-family: var(--font-serif);
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(166, 30, 34, 0.2);
+    }
+    .btn-close:hover {
+      background-color: #8C1619;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="corner-decor top-left"></div>
+    <div class="corner-decor top-right"></div>
+    <div class="corner-decor bottom-left"></div>
+    <div class="corner-decor bottom-right"></div>
+
+    <header>
+      <div class="fan-icon">🪭</div>
+      <h1>2026년 하반기 총운</h1>
+      <div class="sub-title">2026 FORTUNE</div>
+      <div class="divider"></div>
+    </header>
+
+    <div class="user-badge" id="user-badge-container">
+      사주를 분석 중입니다...
+    </div>
+
+    <!-- Card 1: 2026 하반기 흐름 총론 -->
+    <div class="card">
+      <div class="card-title">🐴 2026년 하반기 흐름 총평</div>
+      <div class="card-content" id="general-desc">
+        하반기 총운 흐름을 연도 학업/금전/직업 분석과 맞물려 산출하고 있습니다.
+      </div>
+    </div>
+
+    <!-- Card 2: 월별 월운 흐름 -->
+    <div class="card">
+      <div class="card-title">📅 7월~12월 월별 상세 운세 일지</div>
+      <div class="card-content">
+        <div class="monthly-list" id="monthly-container">
+          <!-- Monthly items will go here -->
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-close" onclick="window.close()">창 닫기</button>
+  </div>
+
+  <script>
+    // Load result
+    const resultJson = localStorage.getItem('saju_latest_result');
+    if (!resultJson) {
+      document.getElementById('user-badge-container').innerHTML = '분석된 사주 정보가 존재하지 않습니다.';
+    } else {
+      const result = JSON.parse(resultJson);
+      const name = result.name;
+      const gender = result.input.gender === '남' ? '乾命(남성)' : '坤命(여성)';
+      
+      // Update badge
+      document.getElementById('user-badge-container').innerHTML = `<strong>${name}</strong>님 (${gender}) · 병오(丙午)년 하반기 운세`;
+
+      // Get Day Master
+      const dayStem = result.pillarDetails.day.element.stem;
+
+      let general = '';
+      let monthly = [];
+
+      if (dayStem === '목') {
+        general = `2026년 병오(丙午)년은 하늘과 땅이 온통 뜨거운 불의 열기로 채워진 해입니다. 목(木) 일간인 귀하에게는 스스로의 재능과 에너지를 외부로 힘차게 뿜어내는 '식상(食傷)의 해'가 됩니다. 이에 따라 하반기는 본인의 매력이나 창의성이 돋보이고 일을 추진하는 원동력이 극대화되나, 지나치게 열정을 불태워 기력이나 체력이 급격히 소진(번아웃)될 수 있으니 페이스 조절이 최고의 핵심 화두입니다.`;
+        monthly = [
+          { m: '7월', d: '을미(乙未)월: 대인 관계 협업이 활발하고 뜻밖의 공동 보조를 통해 작은 재물적 성과를 이룰 수 있는 안정적인 시기입니다.' },
+          { m: '8월', d: '병신(丙申)월: 관성(직업운)의 강한 유입으로 직장 내 승진, 이직, 시험 합격 소식이 있으나 정신적 업무 스트레스가 극에 달할 수 있습니다.' },
+          { m: '9월', d: '정유(丁酉)월: 재능에 대한 인정과 동시에 새로운 업무 제안이나 러브콜을 받습니다. 감성적인 결정보단 이성적 판단이 요구됩니다.' },
+          { m: '10월', d: '무술(戊戌)월: 강력한 횡재수와 편재(재물)운이 활성화됩니다. 다만 성급한 투자나 투기는 손실을 유발하니 신중하십시오.' },
+          { m: '11월', d: '기해(己亥)월: 지친 기력을 충전하고 멘토나 윗사람의 든든한 학업적, 금전적 원조를 받아 안정을 되찾는 고요한 달입니다.' },
+          { m: '12월', d: '경자(庚子)월: 직급이나 지위에 긍정적인 변동운이 들어오나 일상적인 마찰이나 시비가 붙을 수 있으니 유연히 흐르듯 양보하십시오.' }
+        ];
+      } else if (dayStem === '화') {
+        general = `2026년 병오(丙午)년은 화(火) 일간인 귀하와 동일한 에너지가 2배로 폭발하는 '비겁(比劫)의 해'입니다. 주체성이 강해지고 동업, 동료, 경쟁이 대단히 치열해지는 흐름입니다. 하반기는 사람들과의 강한 네트워킹 속에서 사업 영역을 넓히고 팀워크 성과를 낼 수 있으나, 지나친 자신감으로 인한 투자 손실이나 주변인들과의 충돌을 예방하는 자기 절제가 절대적으로 중요합니다.`;
+        monthly = [
+          { m: '7월', d: '을미(乙未)월: 계약 성사 운이나 시험운이 좋습니다. 문서적인 권리를 확보하되, 타인에게 도장을 빌려주는 일은 삼가십시오.' },
+          { m: '8월', d: '병신(丙申)월: 재물적인 돌파구가 뚫리기 시작합니다. 뜻밖의 수입이 들어오지만 나가는 비용 또한 동반 증가하니 지출 통제가 필요합니다.' },
+          { m: '9월', d: '정유(丁酉)월: 횡재성 자산의 유입이나 보너스 기회가 생깁니다. 대인 관계에서 주위 동료들에게 밥을 사며 기운을 나누면 좋습니다.' },
+          { m: '10월', d: '무술(戊戌)월: 과도하게 활동반경이 넓어져 기력이 쇠해질 수 있으니 수면 시간을 충분히 확보하고 실수를 줄이십시오.' },
+          { m: '11월', d: '기해(己亥)월: 대인 관계 스트레스가 줄어들고, 지위가 견고해집니다. 공적인 업무에서 원리원칙대로 처리하면 대길합니다.' },
+          { m: '12월', d: '경자(庚子)월: 경쟁 구도에서 마침내 명예로운 승리를 쟁취합니다. 관절이나 비뇨기 계통의 소소한 건강 체크는 필수입니다.' }
+        ];
+      } else if (dayStem === '토') {
+        general = `2026년 병오(丙午)년은 뜨거운 불꽃이 흙을 구워 단단한 도자기를 만드는 '인성(印星)의 해'입니다. 계약 성사, 부동산 매매, 학업, 자격증 취득, 그리고 어머니나 상사의 원조 등 보이지 않는 큰 조력이 작동합니다. 하반기는 그간 준비했던 시험이나 자격의 결실을 맺고 계약서에 귀중한 서명을 올릴 수 있으나, 생각이 너무 많아져 추진력이 흐려지는 면을 조심해야 합니다.`;
+        monthly = [
+          { m: '7월', d: '을미(乙未)월: 안정적인 문서 계약이 성사되거나 가정 내 경사가 있습니다. 땅을 딛듯 한 단계 차분하게 다지는 달입니다.' },
+          { m: '8월', d: '병신(丙申)월: 공부와 이론 중심에서 벗어나 몸으로 뛰어들어 실행하고 창의적인 아이디어를 발휘하여 주목받습니다.' },
+          { m: '9월', d: '정유(丁酉)월: 예능/기술적 방면의 성과가 좋으며, 막혔던 시험의 최종 합격 통지서나 문서운이 강력하게 들어옵니다.' },
+          { m: '10월', d: '무술(戊戌)월: 주변 사람들과의 듬직한 신뢰 동맹이 체결됩니다. 독자 행동보단 공동 프로젝트나 협의가 유리합니다.' },
+          { m: '11월', d: '기해(己亥)월: 금전적인 흐름이 드디어 양호한 국면으로 진입합니다. 그동안 투자했던 자산이 복구되는 흐름입니다.' },
+          { m: '12월', d: '경자(庚子)월: 투자나 보너스로 목돈의 유입이 생깁니다. 다만 추위에 약한 소화기 계통 건강 관리에 주의하십시오.' }
+        ];
+      } else if (dayStem === '금') {
+        general = `2026년 병오(丙午)년은 뜨거운 열기가 쇠를 단단히 제련해 내는 '관성(官星)의 해'입니다. 직장에서 막중한 책임감을 부여받거나 리더십을 검증받는 혹독하면서도 찬란한 명예의 기로입니다. 하반기는 직업적 입지가 다져지고 승진운이 비약적으로 강해지나, 직속 상사나 클라이언트의 요구에 숨이 턱 막힐 수 있으니 가벼운 운동과 휴식으로 심신을 치유하십시오.`;
+        monthly = [
+          { m: '7월', d: '을미(乙未)월: 직업적인 압박에서 벗어나 잠시 평온을 찾습니다. 문서 취득이나 장기 계획을 짜기에 훌륭한 타이밍입니다.' },
+          { m: '8월', d: '병신(丙申)월: 나를 도와주는 든든한 동료나 아군이 등장하여 혼자 짊어지던 무거운 짐을 나누어 가집니다.' },
+          { m: '9월', d: '정유(丁酉)월: 경쟁자가 협조자로 변하는 상생의 기운입니다. 대외 거래나 영업에서 계약을 무리 없이 체결합니다.' },
+          { m: '10월', d: '무술(戊戌)월: 꼼꼼한 학습과 정보 분석력이 최고조에 달합니다. 조언을 듣고 계약서 서명을 꼼꼼히 완수해 내십시오.' },
+          { m: '11월', d: '기해(己亥)월: 마음의 스트레스가 흐르는 물에 씻기듯 편안하게 해소되고 자유로운 발상의 전환을 만끽합니다.' },
+          { m: '12월', d: '경자(庚子)월: 활동성은 늘어나나 윗사람과의 이견이 있을 수 있으니 감정적 반발보다 조용한 경청이 이롭습니다.' }
+        ];
+      } else if (dayStem === '수') {
+        general = `2026년 병오(丙午)년은 메마른 땅에 물이 스며들어 거대한 재물을 형성하는 '재성(財星)의 해'입니다. 일생일대의 커다란 재물 축적 기회, 적극적인 사업 수완 발휘, 남성의 경우 이성과의 강렬한 인연이 맺어지는 열정의 흐름입니다. 하반기는 금전 회전율이 매우 높고 사업 수익이 대단히 극대화되나, 하이리스크 투자는 가급적 피하고 안정 자산 위주로 보존하십시오.`;
+        monthly = [
+          { m: '7월', d: '을미(乙未)월: 지출과 이익이 교차하는 달입니다. 과도한 과시 소비를 자제하고 안정을 제일로 삼으십시오.' },
+          { m: '8월', d: '병신(丙申)월: 공적인 신뢰도가 올라가면서 자연스럽게 금전적 보상과 인센티브, 혹은 프로젝트 성과급이 주어집니다.' },
+          { m: '9월', d: '정유(丁酉)월: 직장인은 승진 또는 연봉 협상 소식, 사업가는 신규 매출처 확대로 고정적인 수입원이 배가되는 달입니다.' },
+          { m: '10월', d: '무술(戊戌)월: 부동산이나 적금 등 묶여있는 안정 지향 자산의 소식이 양호합니다. 주식 등 변동성 자산은 자제하십시오.' },
+          { m: '11월', d: '기해(己亥)월: 친구나 동료와의 유대가 좋아지며, 그들로부터 핵심 금전 정보나 조력을 받아 돌파구를 뚫습니다.' },
+          { m: '12월', d: '경자(庚子)월: 강한 동료애와 더불어 금전적인 이익을 분배하거나 나누어 갖는 상생의 따뜻한 연말입니다.' }
+        ];
+      }
+
+      // Render general
+      document.getElementById('general-desc').innerHTML = general;
+
+      // Render monthly
+      const container = document.getElementById('monthly-container');
+      container.innerHTML = monthly.map(item => `
+        <div class="month-item">
+          <div class="month-badge">${item.m}</div>
+          <div class="month-desc">${item.d}</div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

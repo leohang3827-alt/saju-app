@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=device-width, initial-scale=1.0">
+  <title>용신(用神)과 희신(喜神) 분석 - AI 사주 리포트</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Serif+KR:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --color-bg-cream: #FCF9F5;
+      --color-cream-card: #FAF5EF;
+      --color-accent-red: #A61E22;
+      --color-accent-gold: #C09D5B;
+      --color-text-charcoal: #2A2421;
+      --color-text-light: #6E625A;
+      --font-serif: 'Noto Serif KR', serif;
+      --font-sans: 'Outfit', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg-cream);
+      font-family: var(--font-sans), sans-serif;
+      color: var(--color-text-charcoal);
+      line-height: 1.6;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-accent-gold);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 8px 32px rgba(42, 36, 33, 0.06);
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Corner Deco */
+    .corner-decor {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--color-accent-gold);
+      pointer-events: none;
+    }
+    .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .fan-icon {
+      font-size: 28px;
+      color: var(--color-accent-red);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      color: var(--color-accent-red);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .sub-title {
+      font-size: 11px;
+      color: var(--color-accent-gold);
+      letter-spacing: 0.15em;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-accent-gold);
+      margin: 12px auto;
+    }
+
+    /* User Badge */
+    .user-badge {
+      background-color: var(--color-cream-card);
+      border: 1px solid rgba(192, 157, 91, 0.3);
+      border-radius: 12px;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 13px;
+      margin-bottom: 20px;
+      font-family: var(--font-serif);
+    }
+    .user-badge strong {
+      color: var(--color-accent-red);
+    }
+
+    /* Element Box Layout */
+    .lucky-elements-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .element-card {
+      background-color: var(--color-bg-cream);
+      border: 1.5px solid var(--color-accent-gold);
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(192,157,91,0.08);
+    }
+
+    .element-card-label {
+      font-size: 11px;
+      color: var(--color-text-light);
+      margin-bottom: 6px;
+      font-family: var(--font-serif);
+    }
+
+    .element-card-value {
+      font-size: 24px;
+      font-weight: 900;
+      font-family: var(--font-serif);
+      margin-bottom: 4px;
+    }
+
+    .element-card-sub {
+      font-size: 10px;
+      color: var(--color-accent-gold);
+    }
+
+    /* Card Layout */
+    .card {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(192, 157, 91, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(42, 36, 33, 0.02);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-accent-red);
+      border-bottom: 1px dashed var(--color-accent-gold);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-content {
+      font-size: 13px;
+      color: var(--color-text-charcoal);
+      line-height: 1.7;
+      text-align: justify;
+      word-break: keep-all;
+    }
+
+    /* Action Button */
+    .btn-close {
+      margin-top: auto;
+      background-color: var(--color-accent-red);
+      color: #FFFFFF;
+      border: 1px solid var(--color-accent-gold);
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      font-family: var(--font-serif);
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(166, 30, 34, 0.2);
+    }
+    .btn-close:hover {
+      background-color: #8C1619;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="corner-decor top-left"></div>
+    <div class="corner-decor top-right"></div>
+    <div class="corner-decor bottom-left"></div>
+    <div class="corner-decor bottom-right"></div>
+
+    <header>
+      <div class="fan-icon">🪭</div>
+      <h1>용신(用神)·희신(喜神) 분석</h1>
+      <div class="sub-title">YONGSHIN REPORT</div>
+      <div class="divider"></div>
+    </header>
+
+    <div class="user-badge" id="user-badge-container">
+      사주를 분석 중입니다...
+    </div>
+
+    <!-- Calculated Yongshin & Heeshin Cards -->
+    <div class="lucky-elements-grid">
+      <div class="element-card">
+        <div class="element-card-label">나의 용신(用神 - 핵심 행운의 기운)</div>
+        <div class="element-card-value" id="yongshin-val" style="color: var(--color-accent-red);">?</div>
+        <div class="element-card-sub" id="yongshin-sub">사주를 조율하는 기운</div>
+      </div>
+
+      <div class="element-card">
+        <div class="element-card-label">나의 희신(喜神 - 보조 행운의 기운)</div>
+        <div class="element-card-value" id="heeshin-val" style="color: #6E625A;">?</div>
+        <div class="element-card-sub" id="heeshin-sub">용신을 돕고 상생하는 기운</div>
+      </div>
+    </div>
+
+    <!-- Card 1: 용신과 희신의 명리학적 개념 -->
+    <div class="card">
+      <div class="card-title">📖 용신(用神)과 희신(喜神)이란?</div>
+      <div class="card-content">
+        사주명리학에서 <strong>용신(用神)</strong>은 사주의 기운을 중화시켜 균형을 맞춰주는 '가장 핵심적이고 이로운 기운'을 뜻합니다. <strong>희신(喜神)</strong>은 이러한 용신의 기운을 생조(생해주고 도와줌)하여 운의 흐름을 더욱 부드럽고 긍정적으로 확장시키는 기운입니다. 이 두 기운이 실생활에 깃들게 하면 운이 트이고 매사가 순조롭게 개운(開運)됩니다.
+      </div>
+    </div>
+
+    <!-- Card 2: 개인별 용신/희신 분석 해설 -->
+    <div class="card">
+      <div class="card-title">🔍 나만의 행운 에너지 맞춤 풀이</div>
+      <div class="card-content" id="yongshin-desc">
+        용신과 희신을 판별하고 최적의 처방을 작성 중입니다.
+      </div>
+    </div>
+
+    <!-- Card 3: 일상 개운 행동 팁 -->
+    <div class="card">
+      <div class="card-title">🚶 운명을 여는 억부(抑扶) 조율 조언</div>
+      <div class="card-content" id="yongshin-advice">
+        행운을 불어넣는 개운 팁을 로딩 중입니다.
+      </div>
+    </div>
+
+    <button class="btn-close" onclick="window.close()">창 닫기</button>
+  </div>
+
+  <script>
+    // Load result
+    const resultJson = localStorage.getItem('saju_latest_result');
+    if (!resultJson) {
+      document.getElementById('user-badge-container').innerHTML = '분석된 사주 정보가 존재하지 않습니다.';
+    } else {
+      const result = JSON.parse(resultJson);
+      const name = result.name;
+      const gender = result.input.gender === '남' ? '乾命(남성)' : '坤命(여성)';
+      
+      // Update badge
+      document.getElementById('user-badge-container').innerHTML = `<strong>${name}</strong>님 (${gender}) · 조화로운 행운 에너지 분석`;
+
+      // Find the element with the lowest count
+      const elementsMap = result.fiveElements;
+      const elements = [
+        { name: '목', count: elementsMap.wood, color: '#729B52', eng: 'Wood', parent: '수' },
+        { name: '화', count: elementsMap.fire, color: '#A61E22', eng: 'Fire', parent: '목' },
+        { name: '토', count: elementsMap.earth, color: '#C09D5B', eng: 'Earth', parent: '화' },
+        { name: '금', count: elementsMap.metal, color: '#9EB1B9', eng: 'Metal', parent: '토' },
+        { name: '수', count: elementsMap.water, color: '#5B8EA3', eng: 'Water', parent: '금' }
+      ];
+
+      // Sort ascending to get the weakest element
+      elements.sort((a, b) => a.count - b.count);
+      const weakest = elements[0]; // Weakest is the Yongshin (Eokbu method)
+      const yongshin = weakest.name;
+      const heeshin = weakest.parent; // Supportive element (feeds yongshin)
+
+      // Find full colors for UI
+      const yongshinColor = elements.find(e => e.name === yongshin).color;
+      const heeshinColor = elements.find(e => e.name === heeshin).color;
+
+      // Update UI cards
+      document.getElementById('yongshin-val').innerHTML = yongshin + ' (木/화/토/금/수)'.substring(yongshin === '목' ? 1 : yongshin === '화' ? 3 : yongshin === '토' ? 5 : yongshin === '금' ? 7 : 9, yongshin === '목' ? 4 : yongshin === '화' ? 6 : yongshin === '토' ? 8 : yongshin === '금' ? 10 : 12);
+      document.getElementById('yongshin-val').style.color = yongshinColor;
+      document.getElementById('yongshin-sub').innerHTML = `${weakest.eng}의 에너지`;
+
+      document.getElementById('heeshin-val').innerHTML = heeshin + ' (木/화/토/금/수)'.substring(heeshin === '목' ? 1 : heeshin === '화' ? 3 : heeshin === '토' ? 5 : heeshin === '금' ? 7 : 9, heeshin === '목' ? 4 : heeshin === '화' ? 6 : heeshin === '토' ? 8 : heeshin === '금' ? 10 : 12);
+      document.getElementById('heeshin-val').style.color = heeshinColor;
+      document.getElementById('heeshin-sub').innerHTML = `${elements.find(e => e.name === heeshin).eng}의 에너지`;
+
+      // Generate analysis texts
+      let desc = '';
+      let advice = '';
+
+      if (yongshin === '목') {
+        desc = `귀하의 사주는 오행 분포상 나무(木)의 기운이 ${weakest.count}개로 매우 희소하거나 약합니다. 따라서 사주 전체를 균형있게 유지해 주는 행운의 기운인 **용신은 목(木, 나무)**이며, 이를 든든하게 받쳐주는 **희신은 수(水, 물)**가 됩니다. 생동감이 넘치고 위로 쭉쭉 뻗어 나가는 성장의 에너지를 보완할 때 건강과 사업, 인간관계 모든 면에서 탁월한 도약이 일어납니다.`;
+        advice = `목(木)의 성장의 기운을 흡수하기 위해 아침 일찍 산책을 하거나 숲이나 화원 등 식물이 많은 초록 공간을 자주 찾는 것이 좋습니다. 일을 추진할 때 너무 오래 망설이기보다는 '나무가 싹을 틔우듯' 빠른 기획과 과감한 첫걸음이 최상의 개운법이 됩니다.`;
+      } else if (yongshin === '화') {
+        desc = `귀하의 사주는 오행 분포상 불(火)의 기운이 ${weakest.count}개로 에너지가 편중되어 있습니다. 사주 전체를 조율하고 활력을 가득 채워주는 **용신은 화(火, 불)**이며, 이를 든든하게 살려주는 **희신은 목(木, 나무)**이 됩니다. 어둠을 걷어내고 세상을 환하게 비추는 불꽃처럼 정열적이고 활발한 대외 활동과 자기표현력을 증대시킬 때 인생의 막힌 일들이 힘차게 풀립니다.`;
+        advice = `따뜻한 햇볕을 자주 쬐어 체내에 불의 활력을 불어넣으십시오. 대인관계에서 자신의 강점과 실력을 주눅 들지 않고 능동적이고 화려하게 펼쳐 보일 필요가 있습니다. 열정을 쏟을 수 있는 적극적인 취미나 스피치 훈련이 큰 도움이 됩니다.`;
+      } else if (yongshin === '토') {
+        desc = `귀하의 사주는 오행 분포상 흙(土)의 기운이 ${weakest.count}개로 다소 약합니다. 사주의 정체된 흐름을 중재하고 삶의 기반을 탄탄히 다져주는 **용신은 토(土, 흙)**이며, 이를 보좌하고 조력하는 **희신은 화(火, 불)**가 됩니다. 만물을 부드럽게 받아들이고 든든히 지탱하는 넓은 벌판과 같은 안정감, 중심 조율 능력을 키우는 것이 인생 행운의 열쇠입니다.`;
+        advice = `자주 흙길을 걷거나 등산, 캠핑을 통해 대지의 기운과 직접 접촉하는 맨발 걷기(어싱)가 훌륭한 개운법입니다. 성급한 결정보다는 한 번 더 조율하는 진중함을 지니고 신용과 약속을 절대적으로 수호해 나갈 때 자산과 인간관계의 결실이 튼튼해집니다.`;
+      } else if (yongshin === '금') {
+        desc = `귀하의 사주는 오행 분포상 쇠(金)의 기운이 ${weakest.count}개로 매우 귀한 상황입니다. 흐트러진 환경을 곧게 정돈하고 매듭지어 주는 **용신은 금(金, 쇠)**이며, 이를 보조해 주는 **희신은 토(土, 흙)**가 됩니다. 결단력, 흐름을 끊어주는 과단성, 규칙적인 생활과 같은 뼈대를 사주에 주입할 때 혼란스러운 일들이 질서 정연하게 풀리기 시작합니다.`;
+        advice = `맺고 끊는 확실한 태도가 중요합니다. 질질 끄는 비효율적인 모임이나 인연을 단호하게 끊어낼 때 좋은 기운이 유입됩니다. 하루 일과를 규격화하여 계획적으로 이행하고, 운동이나 정리를 통해 불필요한 군더더기를 깎아내십시오.`;
+      } else if (yongshin === '수') {
+        desc = `귀하의 사주는 오행 분포상 물(水)의 기운이 ${weakest.count}개로 에너지 순환이 더딜 수 있습니다. 온 세상에 지혜의 피를 돌게 하고 유연한 생명력을 전해주는 **용신은 수(水, 물)**이며, 이를 보조하여 끊임없이 물줄기를 생성해 내는 **희신은 금(金, 쇠)**이 됩니다. 물이 모든 장애물을 에둘러 흐르듯이 여유로움과 유연성, 그리고 깊은 통찰력을 장착해야 대길합니다.`;
+        advice = `스트레스를 받을 때 조용히 사색하고 명상하는 시간을 확보하십시오. 물을 충분히 섭취하며, 바다나 강가 등 물이 주는 고요하고 깊은 휴식 공간을 만끽하는 것이 최고입니다. 경직된 고집을 내려놓고 상대를 존중하며 유연하게 타협하는 기술이 필요합니다.`;
+      }
+
+      document.getElementById('yongshin-desc').innerHTML = desc;
+      document.getElementById('yongshin-advice').innerHTML = advice;
+    }
+  </script>
+</body>
+</html>

@@ -5,17 +5,19 @@ interface DraggableWrapperProps {
   id: string; // Unique identifier for saving coordinate offsets
   className?: string;
   style?: React.CSSProperties;
+  defaultOffset?: { x: number; y: number };
 }
 
 export const DraggableWrapper: React.FC<DraggableWrapperProps> = ({ 
   children, 
   id, 
   className = '', 
-  style 
+  style,
+  defaultOffset = { x: 0, y: 0 }
 }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showCoords, setShowCoords] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [offset, setOffset] = useState(defaultOffset);
   const [isDragging, setIsDragging] = useState(false);
   
   const dragStart = useRef({ x: 0, y: 0 });
@@ -28,11 +30,13 @@ export const DraggableWrapper: React.FC<DraggableWrapperProps> = ({
       const saved = localStorage.getItem(`ui_offset_${id}`);
       if (saved) {
         setOffset(JSON.parse(saved));
+      } else if (defaultOffset) {
+        setOffset(defaultOffset);
       }
     } catch (e) {
       console.error('Failed to load coordinate offsets', e);
     }
-  }, [id]);
+  }, [id, defaultOffset]);
 
   // Listen to keyboard shortcuts globally: 't' to toggle edit, 's' to toggle coords
   useEffect(() => {
@@ -128,8 +132,7 @@ export const DraggableWrapper: React.FC<DraggableWrapperProps> = ({
 
   const handleReset = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const zero = { x: 0, y: 0 };
-    setOffset(zero);
+    setOffset(defaultOffset);
     try {
       localStorage.removeItem(`ui_offset_${id}`);
     } catch (e) {}

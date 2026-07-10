@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=device-width, initial-scale=1.0">
+  <title>공간 개운법 (풍수 인테리어) - AI 사주 리포트</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Serif+KR:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --color-bg-cream: #FCF9F5;
+      --color-cream-card: #FAF5EF;
+      --color-accent-red: #A61E22;
+      --color-accent-gold: #C09D5B;
+      --color-text-charcoal: #2A2421;
+      --color-text-light: #6E625A;
+      --font-serif: 'Noto Serif KR', serif;
+      --font-sans: 'Outfit', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg-cream);
+      font-family: var(--font-sans), sans-serif;
+      color: var(--color-text-charcoal);
+      line-height: 1.6;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-accent-gold);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 8px 32px rgba(42, 36, 33, 0.06);
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Corner Deco */
+    .corner-decor {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--color-accent-gold);
+      pointer-events: none;
+    }
+    .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .fan-icon {
+      font-size: 28px;
+      color: var(--color-accent-red);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      color: var(--color-accent-red);
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .sub-title {
+      font-size: 11px;
+      color: var(--color-accent-gold);
+      letter-spacing: 0.15em;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-accent-gold);
+      margin: 12px auto;
+    }
+
+    /* User Badge */
+    .user-badge {
+      background-color: var(--color-cream-card);
+      border: 1px solid rgba(192, 157, 91, 0.3);
+      border-radius: 12px;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 13px;
+      margin-bottom: 20px;
+      font-family: var(--font-serif);
+    }
+    .user-badge strong {
+      color: var(--color-accent-red);
+    }
+
+    /* Card Layout */
+    .card {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(192, 157, 91, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(42, 36, 33, 0.02);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-accent-red);
+      border-bottom: 1px dashed var(--color-accent-gold);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-content {
+      font-size: 13px;
+      color: var(--color-text-charcoal);
+      line-height: 1.7;
+      text-align: justify;
+      word-break: keep-all;
+    }
+
+    .fengshui-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .fengshui-item:last-child {
+      margin-bottom: 0;
+    }
+    .fengshui-label {
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--color-accent-gold);
+      display: flex;
+      alignItems: center;
+      gap: 6px;
+    }
+    .fengshui-desc {
+      font-size: 13px;
+      color: var(--color-text-charcoal);
+      padding-left: 18px;
+    }
+
+    /* Action Button */
+    .btn-close {
+      margin-top: auto;
+      background-color: var(--color-accent-red);
+      color: #FFFFFF;
+      border: 1px solid var(--color-accent-gold);
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      font-family: var(--font-serif);
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(166, 30, 34, 0.2);
+    }
+    .btn-close:hover {
+      background-color: #8C1619;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="corner-decor top-left"></div>
+    <div class="corner-decor top-right"></div>
+    <div class="corner-decor bottom-left"></div>
+    <div class="corner-decor bottom-right"></div>
+
+    <header>
+      <div class="fan-icon">🪭</div>
+      <h1>공간 개운법 (풍수 인테리어)</h1>
+      <div class="sub-title">FENG SHUI REPORT</div>
+      <div class="divider"></div>
+    </header>
+
+    <div class="user-badge" id="user-badge-container">
+      사주를 분석 중입니다...
+    </div>
+
+    <!-- Card 1: 풍수 인테리어의 기본 정의 -->
+    <div class="card">
+      <div class="card-title">☯️ 풍수와 환경이 사주에 미치는 영향</div>
+      <div class="card-content">
+        명리학은 타고난 시간의 에너지(선천운)를 다루고, 풍수지리학은 살아가는 공간의 에너지(후천운)를 다룹니다. 귀하가 머무는 방, 침실, 책상의 배치와 소재, 그리고 행운의 장식 소품을 사주의 조화로운 에너지와 정합시킬 때, 억눌려 있던 기운이 순조롭게 흐르게 되며 건강, 연애, 금전의 복이 배가됩니다.
+      </div>
+    </div>
+
+    <!-- Card 2: 3대 공간 처방전 -->
+    <div class="card">
+      <div class="card-title">🛏️ 나만을 위한 3대 공간 처방전</div>
+      <div class="card-content">
+        <div class="fengshui-item">
+          <div class="fengshui-label">🏠 침실 및 침대 위치 (Sleeping Space)</div>
+          <div class="fengshui-desc" id="bed-desc">불러오는 중...</div>
+        </div>
+
+        <div class="fengshui-item" style="border-top: 1px dashed rgba(192,157,91,0.2); padding-top: 10px; margin-top: 10px;">
+          <div class="fengshui-label">💻 일하는 책상 배치 (Working Desk)</div>
+          <div class="fengshui-desc" id="desk-desc">불러오는 중...</div>
+        </div>
+
+        <div class="fengshui-item" style="border-top: 1px dashed rgba(192,157,91,0.2); padding-top: 10px; margin-top: 10px;">
+          <div class="fengshui-label">🏺 기운을 살리는 풍수 소품 (Decor Items)</div>
+          <div class="fengshui-desc" id="decor-desc">불러오는 중...</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-close" onclick="window.close()">창 닫기</button>
+  </div>
+
+  <script>
+    // Load result
+    const resultJson = localStorage.getItem('saju_latest_result');
+    if (!resultJson) {
+      document.getElementById('user-badge-container').innerHTML = '분석된 사주 정보가 존재하지 않습니다.';
+    } else {
+      const result = JSON.parse(resultJson);
+      const name = result.name;
+      const gender = result.input.gender === '남' ? '乾命(남성)' : '坤命(여성)';
+      
+      // Update badge
+      document.getElementById('user-badge-container').innerHTML = `<strong>${name}</strong>님 (${gender}) · 맞춤 풍수 공간 연출`;
+
+      // Get weakest element (Yongshin) to set Feng Shui
+      const elementsMap = result.fiveElements;
+      const elements = [
+        { name: '목', count: elementsMap.wood },
+        { name: '화', count: elementsMap.fire },
+        { name: '토', count: elementsMap.earth },
+        { name: '금', count: elementsMap.metal },
+        { name: '수', count: elementsMap.water }
+      ];
+      elements.sort((a, b) => a.count - b.count);
+      const targetElement = elements[0].name;
+
+      let bed = '';
+      let desk = '';
+      let decor = '';
+
+      if (targetElement === '목') {
+        bed = '침대를 동쪽 벽면에 두고 머리를 동쪽으로 향하게 주무십시오. 침구는 그린, 올리브, 민트 계열의 파스텔 톤 패브릭을 활용하면 건강 회복 및 아침의 맑은 기운 충전에 최고의 효과가 있습니다.';
+        desk = '원목 소재의 단단한 책상을 설치하시고, 앉았을 때 동쪽을 응시하게 배치하십시오. 책상 모퉁이에 작고 파릇파릇한 화초를 둠으로써 자라나는 성장의 활력 에너지를 유도하십시오.';
+        decor = '집안 거실이나 방에 목조 액자 프레임, 큰 키를 자랑하는 잎이 넓은 식물(관엽식물)이나 산뜻한 시트러스/로즈마리 식물 향 디퓨저를 배치하면 행운이 배가됩니다.';
+      } else if (targetElement === '화') {
+        bed = '침실 조명을 주백색 형광등보단 은은한 오렌지/전구색 조명으로 세팅하십시오. 붉은 갓이나 핑크색 패널이 매칭된 무드등을 침대 머리맡에 비치하여 따스한 화기를 수면 중에 공급받는 것이 중요합니다.';
+        desk = '책상 위의 조명 스탠드를 가급적 밝은 메탈이나 화려한 갓 조명으로 세팅하여 남쪽을 등지거나 남쪽을 바라보도록 설정하십시오. 시각적인 크리에이티브한 자극을 증대시킵니다.';
+        decor = '집안 거실 벽면에 아침에 찬란하게 떠오르는 태양 그림이나 정열적인 일출 액자를 걸어 두십시오. 작은 캔들 워머나 아로마 향초를 피워 공간의 기류를 역동적으로 만드는 것이 좋습니다.';
+      } else if (targetElement === '토') {
+        bed = '침실 침대는 안정감이 최우선입니다. 침실 구석의 가장 조용하고 안락한 벽에 밀착하여 두고, 침구 커버는 옐로우, 브라운, 베이지 등의 대지 흙 색상 톤으로 부드럽게 세팅하여 포용력과 평온을 충전하십시오.';
+        desk = '책상 상판이 단단한 나무나 스톤 질감인 것이 대단히 유리하며, 사방이 너무 트인 곳보단 파티션 등으로 둘러싸여 안정감이 극대화된 방 안쪽(중앙 근처)에 데스크를 세팅하고 신중함을 가다듬으십시오.';
+        decor = '도자기로 구워진 고풍스러운 항아리, 황토 도예 화병, 돌이나 미네랄 원석 소품을 거실 정중앙 근처에 두고 천연 석고 디퓨저를 가동하면 공간의 마찰이 줄고 평화가 깃듭니다.';
+      } else if (targetElement === '금') {
+        bed = '화려함보단 미니멀리즘이 귀하의 기운을 살립니다. 군더더기 없는 화이트/실버 메탈 침대 프레임을 쓰고, 순백색의 깨끗한 호텔식 화이트 침구를 선택하여 예리한 정신과 결단력을 맑게 유지해 주십시오.';
+        desk = '알루미늄이나 스틸 프레임의 모던한 책상을 배치하고 서쪽을 향하도록 하여 냉철한 집중력을 이끌어내십시오. 책상 위는 불필요한 물건을 치우고 늘 칼같이 단정히 정돈해 두셔야 합니다.';
+        decor = '크롬 도금된 세련된 원형 거울, 황동 조각 소품, 은제 수공예 그릇, 가방에 쏙 들어가는 미니 은장 거울 등을 집안 현관 입구 건너편이나 거실에 걸어두면 불필요한 잡귀와 액운을 깔끔하게 반사 차단합니다.';
+      } else if (targetElement === '수') {
+        bed = '수면을 취할 때 차분하고 깊은 정적이 기운을 회복시킵니다. 딥블루 또는 다크 네이비 계열의 암막 커튼을 치고 침대를 가장 어두운 안쪽 벽(북쪽)에 두십시오. 깊고 조용하게 뇌를 쉬어주는 수면 인테리어가 핵심입니다.';
+        desk = '책상 주변에 소형 분수기나 수조, 어항을 두어 물이 졸졸 흐르는 음향과 시각적 효과를 유도하거나 북쪽을 바라보고 업무에 깊이 몰두하십시오. 지혜로운 아이디어 생산과 냉철한 통찰력이 활성화됩니다.';
+        decor = '바다나 강, 출렁이는 파도가 역동적으로 묘사된 웅장한 물 그림 액자를 거실 벽면에 걸어두십시오. 검정 가죽 소품이나 메탈 가습기를 늘 깨끗하게 가동하여 기운의 지속 순환을 촉진하십시오.';
+      }
+
+      // Populate elements
+      document.getElementById('bed-desc').innerHTML = bed;
+      document.getElementById('desk-desc').innerHTML = desk;
+      document.getElementById('decor-desc').innerHTML = decor;
+    }
+  </script>
+</body>
+</html>
