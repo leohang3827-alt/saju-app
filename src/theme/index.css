@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@400;500;700;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-cream-bg: #F9EBDF;
+  --color-cream-card: #FFFFFF;
+  --color-cream-dark: #F0DFC8;
+  --color-accent-red: #A61E22;
+  --color-accent-red-hover: #8D171A;
+  --color-accent-red-light: #FBEBEB;
+  --color-accent-gold: #C09D5B;
+  --color-text-charcoal: #2A2421;
+  --color-text-light: #7E726D;
+  --font-oriental: 'Noto Serif KR', 'Gowun Batang', serif;
+  --font-sans: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --shadow-premium: 0 8px 24px rgba(166, 30, 34, 0.04), 0 2px 8px rgba(42, 36, 33, 0.02);
+  --shadow-card: 0 4px 16px rgba(42, 36, 33, 0.04);
+}
+
+/* Reset and Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #EADBC8; /* Soft ambient background to frame our mobile app */
+  font-family: var(--font-sans);
+  color: var(--color-text-charcoal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Mobile Wrapper (Mobile First Design) */
+#app-container {
+  width: 100%;
+  max-width: 480px; /* Standard mobile breakpoint */
+  height: 100vh;
+  max-height: 900px;
+  background-color: var(--color-cream-bg);
+  background-image: 
+    /* Subtle paper noise texture using linear/radial patterns */
+    radial-gradient(var(--color-cream-dark) 1px, transparent 0),
+    radial-gradient(var(--color-cream-dark) 1px, transparent 0);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+  box-shadow: 0 24px 64px rgba(42, 36, 33, 0.25);
+  border-radius: 24px;
+  border: 8px solid #2A2421; /* Outer phone bezel */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  #app-container {
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* Scroll Container */
+.scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 18px 80px 18px; /* Bottom padding accounts for nav bar */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.scroll-content::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+/* Typography styles */
+h1, h2, h3, h4, .title-oriental {
+  font-family: var(--font-oriental);
+  color: var(--color-accent-red);
+}
+
+/* Traditional Oriental double border card */
+.oriental-card {
+  background-color: var(--color-cream-card);
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 16px;
+  box-shadow: var(--shadow-premium);
+  margin-bottom: 20px;
+  padding: 16px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.oriental-card:active {
+  transform: scale(0.99);
+}
+
+/* Corner decors */
+.corner-decor {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-accent-red);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.corner-top-left {
+  top: 6px;
+  left: 6px;
+  border-width: 1px 0 0 1px;
+}
+
+.corner-top-right {
+  top: 6px;
+  right: 6px;
+  border-width: 1px 1px 0 0;
+}
+
+.corner-bottom-left {
+  bottom: 6px;
+  left: 6px;
+  border-width: 0 0 1px 1px;
+}
+
+.corner-bottom-right {
+  bottom: 6px;
+  right: 6px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Navigation Styles */
+.nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: #FAF2EB;
+  border-top: 1px solid var(--color-accent-gold);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 10;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light);
+  font-family: var(--font-oriental);
+  font-size: 11px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  height: 100%;
+  transition: color 0.2s ease;
+}
+
+.nav-item.active {
+  color: var(--color-accent-red);
+  font-weight: bold;
+}
+
+.nav-icon {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+/* Custom Premium Button */
+.btn-primary {
+  background-color: var(--color-accent-red);
+  color: white;
+  border: 1px solid var(--color-accent-gold);
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-family: var(--font-oriental);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(166, 30, 34, 0.2);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-red-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  background-color: #cccccc;
+  border-color: #bbbbbb;
+  cursor: not-allowed;
+  box-shadow: none;
+}
