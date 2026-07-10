@@ -1,5 +1,5 @@
 import React from 'react';
-import woodLarge from '../assets/characters/wood_large.png';
+import fireLarge from '../assets/characters/fire_large.png';
 import { FanDeco } from '../widgets/TraditionalDeco';
 
 interface SplashProps {
@@ -158,8 +158,8 @@ export const Splash: React.FC<SplashProps> = ({ onStart }) => {
 
         {/* Character Image */}
         <img 
-          src={woodLarge} 
-          alt="메인 목 캐릭터" 
+          src={fireLarge} 
+          alt="메인 화 캐릭터" 
           style={{
             maxHeight: '85%',
             objectFit: 'contain',
