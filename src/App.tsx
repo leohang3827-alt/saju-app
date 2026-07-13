@@ -99,6 +99,7 @@ export const App: React.FC = () => {
               if (idx === 1) handleSelectFreeReportFromHome();
             }}
             onOpenLockModal={() => setIsLockModalOpen(true)}
+            onAnalyze={handleAnalyze}
           />
         );
       case 'report':
@@ -140,7 +141,7 @@ export const App: React.FC = () => {
           />
         );
       default:
-        return <Home onSelectReport={() => {}} onOpenLockModal={() => {}} />;
+        return <Home onSelectReport={() => {}} onOpenLockModal={() => {}} onAnalyze={handleAnalyze} />;
     }
   };
 
