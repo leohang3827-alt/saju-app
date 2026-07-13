@@ -434,19 +434,43 @@ export const ReportResult: React.FC<ReportResultProps> = ({ result, onBack, onOp
         </OrientalFrame>
       </DraggableWrapper>
 
-      {/* Lock Button at Bottom */}
+      {/* Lock Button / Purchase Call-to-action Section */}
       <DraggableWrapper id="result_button" style={{ width: '100%' }}>
-        <button 
-          className="btn-primary" 
-          onClick={onOpenLockModal}
-          style={{
-            marginTop: '8px',
-            marginBottom: '20px',
-            width: '100%'
-          }}
-        >
-          자세한 리포트 보기
-        </button>
+        <div style={{
+          marginTop: '16px',
+          marginBottom: '28px',
+          padding: '16px',
+          backgroundColor: 'var(--color-cream-card)',
+          border: '1px dashed var(--color-accent-gold)',
+          borderRadius: '16px',
+          textAlign: 'center'
+        }}>
+          <p style={{
+            fontSize: '12.5px',
+            color: 'var(--color-text-charcoal)',
+            fontWeight: '600',
+            lineHeight: '1.6',
+            margin: '0 0 12px 0',
+            wordBreak: 'keep-all'
+          }}>
+            🔮 <strong>{name}</strong>님만을 위한 상세 오행 비책과<br />
+            부족한 기운을 보완할 <strong>'가상 집 꾸미기/개운 소품 추천'</strong>이<br />
+            프리미엄 리포트에 준비되어 있습니다.
+          </p>
+          <button 
+            className="btn-primary" 
+            onClick={onOpenLockModal}
+            style={{
+              width: '100%',
+              padding: '12px 20px',
+              fontSize: '13.5px',
+              fontWeight: 'bold',
+              borderRadius: '10px'
+            }}
+          >
+            상세 오행 풀이 & 개운 인테리어 보러가기
+          </button>
+        </div>
       </DraggableWrapper>
     </div>
   );
