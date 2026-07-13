@@ -77,12 +77,6 @@ export const App: React.FC = () => {
     setActiveTab('report');
   };
 
-  const handleSelectFreeReportFromHome = () => {
-    // When clicking "1. 사주의 기본 구조 및 오행 분석" on Home:
-    // We open the form directly so the user can enter a new analysis.
-    setReportSubScreen('form');
-    setActiveTab('report');
-  };
 
   const handleGoToInputFromHistory = () => {
     setReportSubScreen('form');
@@ -95,9 +89,6 @@ export const App: React.FC = () => {
       case 'home':
         return (
           <Home 
-            onSelectReport={(idx) => {
-              if (idx === 1) handleSelectFreeReportFromHome();
-            }}
             onOpenLockModal={() => setIsLockModalOpen(true)}
             onAnalyze={handleAnalyze}
           />
@@ -141,7 +132,7 @@ export const App: React.FC = () => {
           />
         );
       default:
-        return <Home onSelectReport={() => {}} onOpenLockModal={() => {}} onAnalyze={handleAnalyze} />;
+        return <Home onOpenLockModal={() => {}} onAnalyze={handleAnalyze} />;
     }
   };
 

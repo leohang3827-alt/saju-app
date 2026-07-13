@@ -1,13 +1,18 @@
 import React from 'react';
 import type { SajuResultData } from '../models/saju';
 import woodLarge from '../assets/characters/wood_large.png';
+import fireSmall from '../assets/characters/fire_small.png';
+import earthSmall from '../assets/characters/earth_small.png';
+import metalSmall from '../assets/characters/metal_small.png';
+import waterSmall from '../assets/characters/water_small.png';
+import woodSmall from '../assets/characters/wood_small.png';
+import { FanDeco, LockIcon } from '../widgets/TraditionalDeco';
 import OrientalFrame from '../widgets/OrientalFrame';
+import DraggableWrapper from '../widgets/DraggableWrapper';
 import PillarTable from '../components/PillarTable';
 import ElementChart from '../components/ElementChart';
 import ProgressBar from '../components/ProgressBar';
 import { generateSummarySentence, analyzeElements, calculateYinYangBalance, getElementColor } from '../utils/sajuAnalyzer';
-import { FanDeco } from '../widgets/TraditionalDeco';
-import DraggableWrapper from '../widgets/DraggableWrapper';
 
 interface ReportResultProps {
   result: SajuResultData;
@@ -434,10 +439,71 @@ export const ReportResult: React.FC<ReportResultProps> = ({ result, onBack, onOp
         </OrientalFrame>
       </DraggableWrapper>
 
+      {/* Additional Premium Reports List (Locked on Free Version) */}
+      <div style={{ marginTop: '24px', marginBottom: '16px' }}>
+        <h3 style={{
+          fontSize: '15px',
+          fontWeight: 700,
+          marginBottom: '14px',
+          color: 'var(--color-accent-red)',
+          fontFamily: 'var(--font-oriental)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px'
+        }}>
+          <span style={{ fontSize: '12px', color: 'var(--color-accent-gold)' }}>▩</span>
+          나의 상세 분석 리포트 목록
+        </h3>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+          {[
+            { id: 2, title: '2. 기질 및 성향 분석', desc: '타고난 성격과 기질, 강점과 약점을 자세히 분석해드립니다.', char: fireSmall },
+            { id: 3, title: '3. 용신(用神)과 희신(喜神) 분석', desc: '나에게 필요한 기운과 보완해야 할 기운을 정확히 짚어드립니다.', char: metalSmall },
+            { id: 4, title: '4. 실생활 맞춤 개운법 (행운의 요소)', desc: '운을 끌어당기는 색상, 숫자, 방향, 물건 등 정운의 요소를 알려드려요.', char: earthSmall },
+            { id: 5, title: '5. 공간 개운법 (풍수 및 인테리어)', desc: '집안의 기운을 바꾸는 풍수 인테리어와 공간 개운법을 제안해드립니다.', char: waterSmall },
+            { id: 6, title: '6. 2026년 하반기 총운', desc: '2026년 하반기 전체 운세 흐름과 주요 이슈를 미리 확인해보세요.', char: woodSmall }
+          ].map((r) => (
+            <div 
+              key={r.id}
+              onClick={onOpenLockModal}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: 'var(--color-cream-card)',
+                border: '1px solid #EAE0D5',
+                borderRadius: '14px',
+                padding: '12px 14px',
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(42, 36, 33, 0.02)',
+                transition: 'border-color 0.2s ease'
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-gold)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#EAE0D5'; }}
+            >
+              <div style={{ width: '36px', height: '40px', marginRight: '12px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}>
+                <img src={r.char} alt="" style={{ maxHeight: '100%', objectFit: 'contain' }} />
+              </div>
+              <div style={{ flex: 1, paddingRight: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+                  <h4 style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-text-charcoal)', margin: 0, fontFamily: 'var(--font-oriental)' }}>
+                    {r.title}
+                  </h4>
+                  <LockIcon size={12} style={{ color: 'var(--color-text-light)' }} />
+                </div>
+                <p style={{ fontSize: '10.5px', color: 'var(--color-text-light)', margin: 0, lineHeight: '1.3' }}>
+                  {r.desc}
+                </p>
+              </div>
+              <div style={{ color: 'var(--color-text-light)', fontSize: '14px', fontWeight: 'bold' }}>&gt;</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Lock Button / Purchase Call-to-action Section */}
       <DraggableWrapper id="result_button" style={{ width: '100%' }}>
         <div style={{
-          marginTop: '16px',
+          marginTop: '8px',
           marginBottom: '28px',
           padding: '16px',
           backgroundColor: 'var(--color-cream-card)',
